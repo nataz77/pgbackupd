@@ -1,0 +1,49 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata: 
+  name: postgresbackupcron
+  namespace: default
+spec:
+  concurrencyPolicy: Allow
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 120
+      backoffLimit: 5
+      completions: 1
+      parallelism: 1
+      template:
+        metadata:
+          annotations: {}
+        spec:
+          containers:          
+          - image: pgbackupd:latest
+            imagePullPolicy: Always
+            name: pgbackupd
+            resources: {}
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities: {}
+              privileged: false
+              readOnlyRootFilesystem: false
+              runAsNonRoot: false
+            stdin: true
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            tty: true
+            volumeMounts:
+            - mountPath: /data/postgresbackup
+              name: vol2
+          dnsPolicy: ClusterFirst
+          restartPolicy: Never
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - hostPath:
+              path: /data/pgdump
+              type: ""
+            name: vol2
+  schedule: 00 22 * * *
+  successfulJobsHistoryLimit: 3
+  suspend: false
