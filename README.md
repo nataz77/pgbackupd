@@ -5,7 +5,7 @@ This has been tested against single instance databases, primary/secondary/hot st
 # Get started
 To get started, I've included a [sample cronjob](https://github.com/nataz77/pgbackupd/blob/v1.0/k8s-cron.yaml) in this repo. 
 All you need to do is replace: 
-* the image (you could use the one built from this repository via [Github Actions](https://github.com/nataz77/pgbackupd/packages/549026)
+* the image (you could use the one built from this repository via [Github Actions](https://github.com/nataz77/pgbackupd/packages/549026))
 * the name and the namespace
 * the schedule
 with your preference and you're good to go in your K8S cluster.
