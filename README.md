@@ -26,7 +26,7 @@ with your preference and you're good to go in your K8S cluster.
 * AZ_CONTAINER_NAME: The storage account container name
 * AZ_ACCOUNT_NAME: The storage account's name associated with the connection string.
 * AZURE_STORAGE_KEY: The storage account's key
-For more info about the Azure Environment Variables, please [see the official docs here](https://docs.microsoft.com/en-us/cli/azure/storage/blob?view=azure-cli-latest#az_storage_blob_upload)
+<br/> For more info about the Azure Environment Variables, please [see the official docs here](https://docs.microsoft.com/en-us/cli/azure/storage/blob?view=azure-cli-latest#az_storage_blob_upload)
 
 ## Environment variables to enable S3 copy 
 * S3COPY: Enables the upload (eg: true)
