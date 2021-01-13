@@ -45,7 +45,7 @@ function dumpall {
 
 function azupload {
     echo "Uploading to Azure enabled. Starting blob upload"
-    az storage azcopy blob upload -c "$AZ_CONTAINER_NAME" --account-name "$AZ_ACCOUNT_NAME" -s "$OUTPUTDIR"/"$date".sql --auth-mode key
+    az storage blob upload -c "$AZ_CONTAINER_NAME" --account-name "$AZ_ACCOUNT_NAME" -s "$OUTPUTDIR"/"$date".sql --auth-mode key
     if [ $? -eq 0 ]
     then
         echo "Upload completed"
