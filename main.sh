@@ -5,9 +5,9 @@ function dump {
     echo "Beginning pg_dump"
     if [ ! -z "$DEBUG" ]
     then
-        pg_dump -h "$HOST" -U "$USER" -v > "$OUTPUTDIR"/"$1".sql  2>&1
+        pg_dump -h "$HOST" -U "$USER" -v -f "$OUTPUTDIR"/"$1".sql 
     else
-        pg_dump -h "$HOST" -U "$USER" > "$OUTPUTDIR"/"$1".sql  2>&1
+        pg_dump -h "$HOST" -U "$USER" -f "$OUTPUTDIR"/"$1".sql 
     fi
     
     if [ ! -z "$AZCOPY" ]
@@ -27,9 +27,9 @@ function dumpall {
     # The same applies to pg_dump in function dump
     if [ ! -z "$DEBUG" ]
     then
-        pg_dumpall -h "$HOST" -U "$USER" -v > "$OUTPUTDIR"/"$1".sql 2>&1
+        pg_dumpall -h "$HOST" -U "$USER" -v  -c -f "$OUTPUTDIR"/"$1".sql
     else
-        pg_dumpall -h "$HOST" -U "$USER" > "$OUTPUTDIR"/"$1".sql 2>&1
+        pg_dumpall -h "$HOST" -U "$USER" -v -c -f "$OUTPUTDIR"/"$1".sql
     fi
     
     if [ ! -z "$AZCOPY" ]
