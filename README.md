@@ -5,7 +5,7 @@ This has been tested against single instance databases, primary/secondary/hot st
 # Get started
 To get started, I've included a [sample cronjob](https://github.com/nataz77/pgbackupd/blob/v1.0/k8s-cron.yaml) in this repo. 
 All you need to do is replace: 
-* the image (you could use the one built from this repository via [Github Actions](https://github.com/nataz77/pgbackupd/packages/549026))
+* the image [(you could use the one built from this repository)](https://github.com/nataz77/pgbackupd/packages/549026)
 * the name and the namespace
 * the schedule
 * the environment vars
@@ -21,7 +21,7 @@ with your preference and you're good to go in your K8S cluster.
 * FULLDUMP: Specifies whether to execute pg_dump or pg_dumpall (set to True if you want the full dump, otherwise leave the var unset)
 * DEBUG: Set this var to true if you want to enable verbose output from pg_dump/pg_dumpall, otherwise leave this var unset
 
-## Environment variables to enable the upload to a Azure Storage Account <b>(currently not working)</b>
+## Environment variables to enable the upload to a Azure Storage Account <b>(currently not working, tracking issue [#2](https://github.com/nataz77/pgbackupd/issues/2))</b>
 * AZCOPY: Enables the upload (eg: true)
 * AZURE_STORAGE_CONNECTION_STRING: The storage account connection string
 * AZ_CONTAINER_NAME: The storage account container name
@@ -34,3 +34,4 @@ with your preference and you're good to go in your K8S cluster.
 * AWS_ACCESS_KEY_ID: The AWS access key 
 * AWS_SECRET_ACCESS_KEY: The AWS secret key
 * AWS_BUCKET_NAME: The S3 bucket name
+<br/> For more info about the AWS CLI Environment Variables, please [see the official docs here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
