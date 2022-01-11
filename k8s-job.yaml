@@ -1,0 +1,51 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pg-backup-one
+  namespace: default
+spec:
+  template:
+    metadata:
+      annotations: {}
+    spec:
+      containers:
+        - env:
+            - name: HOST
+              value: YourHostGoesHere
+            - name: PASSWORD
+              value: YourPasswordGoesHere
+            - name: USER
+              value: YourUserGoesHere
+            - name: DATABASE
+              value: "*"
+            - name: FULLDUMP
+              value: "True"
+          image: ghcr.io/nataz77/pgbackupd/pgbackupd:latest
+          imagePullPolicy: Always
+          name: postgresbackup
+          resources: {}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {}
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
+          volumeMounts:
+            - mountPath: /data/pgdump
+              name: pgbackup
+      dnsPolicy: ClusterFirst
+      # Uncomment this if you are pulling from a private registry
+      # imagePullSecrets:
+      #  - name: secret
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: pgbackup
+          persistentVolumeClaim:
+            claimName: pgbackups
