@@ -47,5 +47,4 @@ spec:
       terminationGracePeriodSeconds: 30
       volumes:
         - name: pgbackup
-          persistentVolumeClaim:
-            claimName: pgbackups
+          emptyDir: {}
